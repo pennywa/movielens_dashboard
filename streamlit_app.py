@@ -65,7 +65,7 @@ st.markdown("Here, we see which genres have the highest viewer satisfication. ")
 
 
 # Average rating for filtered data
-genre_avg_ratings = filtered_df.groupby('genres')['rating'].mean().sort_values(ascending=False)
+genre_avg_ratings = filtered_df_q1.groupby('genres')['rating'].mean().sort_values(ascending=False)
 
 # Seaborn bar chart
 fig2, ax2 = plt.subplots(figsize=(13, 8))
