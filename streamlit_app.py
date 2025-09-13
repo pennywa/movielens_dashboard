@@ -22,30 +22,9 @@ st.title("Genre Breakdown for Rated Movies")
 st.markdown("What's the breakdown of genres for the movies that were rated? ")
 st.markdown("Here, we see the distribution of movie ratings across different genres. ")
 
-# Interactive filters for age, gender, and occupation
-st.subheader("Filter by Demographic")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    age_min, age_max = st.slider('Select Age Range', min_value=int(df['age'].min()), max_value=int(df['age'].max()), value=(int(df['age'].min()), int(df['age'].max())))
-
-with col2:
-    genders = ['All'] + sorted(df['gender'].unique())
-    selected_gender = st.selectbox('Select Gender', genders)
-
-with col3:
-    occupations = ['All'] + sorted(df['occupation'].unique())
-    selected_occupation = st.selectbox('Select Occupation', occupations)
-
-filtered_df_q1 = df[(df['age'] >= age_min) & (df['age'] <= age_max)]
-if selected_gender != 'All':
-    filtered_df_q1 = filtered_df_q1[filtered_df_q1['gender'] == selected_gender]
-if selected_occupation != 'All':
-    filtered_df_q1 = filtered_df_q1[filtered_df_q1['occupation'] == selected_occupation]
 
 # Average rating for the filtered data
-genre_counts = filtered_df_q1['genres'].value_counts().sort_values(ascending=False)
+genre_counts = df['genres'].value_counts().sort_values(ascending=False)
 
 # Matplotlib bar chart
 fig, ax = plt.subplots(figsize=(13, 8))
@@ -63,9 +42,29 @@ st.title("Genres with the highest ratings")
 st.markdown("Which genres have the highest viewer satisfaction (highest ratings)? ")
 st.markdown("Here, we see which genres have the highest viewer satisfication. ")
 
+# Interactive filters for age, gender, and occupation
+st.subheader("Filter by Demographic")
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    age_min, age_max = st.slider('Select Age Range', min_value=int(df['age'].min()), max_value=int(df['age'].max()), value=(int(df['age'].min()), int(df['age'].max())))
+
+with col2:
+    genders = ['All'] + sorted(df['gender'].unique())
+    selected_gender = st.selectbox('Select Gender', genders)
+
+with col3:
+    occupations = ['All'] + sorted(df['occupation'].unique())
+    selected_occupation = st.selectbox('Select Occupation', occupations)
+
+filtered_df_q2 = df[(df['age'] >= age_min) & (df['age'] <= age_max)]
+if selected_gender != 'All':
+    filtered_df_q2 = filtered_df_q2[filtered_df_q2['gender'] == selected_gender]
+if selected_occupation != 'All':
+    filtered_df_q2 = filtered_df_q2[filtered_df_q2['occupation'] == selected_occupation]
 # Average rating for filtered data
-genre_avg_ratings = filtered_df_q1.groupby('genres')['rating'].mean().sort_values(ascending=False)
+genre_avg_ratings = filtered_df_q2.groupby('genres')['rating'].mean().sort_values(ascending=False)
 
 # Seaborn bar chart
 fig2, ax2 = plt.subplots(figsize=(13, 8))
