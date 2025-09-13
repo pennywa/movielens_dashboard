@@ -22,9 +22,17 @@ st.title("Genre Breakdown for Rated Movies")
 st.markdown("What's the breakdown of genres for the movies that were rated? ")
 st.markdown("Here, we see the distribution of movie ratings across different genres. ")
 
+# Selectbox for the release year filter
+years = ['All'] + sorted(df['year'].unique().tolist())
+selected_year = st.selectbox('Select a Movie Release Year', years)
 
-# Average rating for the filtered data
-genre_counts = df['genres'].value_counts().sort_values(ascending=False)
+# Filter df based on the selected year
+if selected_year != 'All':
+    filtered_df_q1 = df[df['year'] == selected_year]
+else:
+    filtered_df_q1 = df.copy()
+
+genre_counts = filtered_df_q1['genres'].value_counts().sort_values(ascending=False)
 
 # Matplotlib bar chart
 fig, ax = plt.subplots(figsize=(13, 8))
