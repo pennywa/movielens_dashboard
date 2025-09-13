@@ -18,7 +18,8 @@ st.markdown("---")
 
 # Question 1: What's the breakdown of genres for the movies that were rated?
 st.title("Genre Breakdown for Rated Movies")
-st.markdown("This chart visualizes the distribution of movie ratings across different genres.")
+st.markdown("What's the breakdown of genres for the movies that were rated? ")
+st.markdown("Here, we see the distribution of movie ratings across different genres. ")
 
 # Count of ratings for each genre
 genre_counts = df['genres'].value_counts().sort_values(ascending=False)
@@ -33,3 +34,22 @@ plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 
 st.pyplot(fig)
+
+# Question 2: Which genres have the highest viewer satisfaction (highest ratings)?
+st.title("Genres with the highest ratings")
+st.markdown("Which genres have the highest viewer satisfaction (highest ratings)? ")
+st.markdown("Here, we see which genres have the highest viewer satisfication. ")
+
+# Average rating for each genre
+genre_avg_ratings = df.groupby('genres')['rating'].mean().sort_values(ascending=False)
+
+# Seaborn bar chart
+fig2, ax2 = plt.subplots(figsize=(13, 8))
+sns.barplot(x=genre_avg_ratings.index, y=genre_avg_ratings.values, palette='viridis', ax=ax2)
+ax2.set_title('Average Rating per Genre', fontsize=16, fontweight='bold')
+ax2.set_xlabel('Genre', fontsize=12)
+ax2.set_ylabel('Average Rating', fontsize=12)
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+st.pyplot(fig2)
