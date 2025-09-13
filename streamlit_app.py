@@ -12,7 +12,6 @@ st.set_page_config(
 
 df = pd.read_csv('movie_ratings.csv')
 
-# Dashboard Introduction
 st.title("Movie Ratings Analysis Dashboard")
 st.markdown("---")
 st.header("Key Insights and Visualizations")
