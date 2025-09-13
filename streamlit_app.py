@@ -73,20 +73,20 @@ st.title("Best-rated movies")
 st.markdown("What are the 5 best-rated movies that have at least 50 ratings? At least 150 ratings? ")
 st.markdown("Here, we see the Top 5 best-rated movies. ")
 
-# Get movies with at least 50 ratings
-min_ratings_50 = 50
-movie_counts_50 = df['title'].value_counts()
-popular_movies_50 = movie_counts_50[movie_counts_50 >= min_ratings_50].index
-top_5_50 = df[df['title'].isin(popular_movies_50)].groupby('title')['rating'].mean().sort_values(ascending=False).head(5)
+# Button to select the minimum ratings filter
+min_ratings_choice = st.radio("Select minimum number of ratings:", ('50', '100', '150', '200'))
+min_ratings = int(min_ratings_choice)
 
-st.subheader(f"Top 5 Movies with at least {min_ratings_50} Ratings")
-st.dataframe(top_5_50)
+# Filter df based on user selection
+movie_counts = df['title'].value_counts()
+popular_movies = movie_counts[movie_counts >= min_ratings].index
+top_5_movies = df[df['title'].isin(popular_movies)].groupby('title')['rating'].mean().sort_values(ascending=False).head(5)
 
-# Get movies with at least 150 ratings
-min_ratings_150 = 150
-movie_counts_150 = df['title'].value_counts()
-popular_movies_150 = movie_counts_150[movie_counts_150 >= min_ratings_150].index
-top_5_150 = df[df['title'].isin(popular_movies_150)].groupby('title')['rating'].mean().sort_values(ascending=False).head(5)
 
-st.subheader(f"Top 5 Movies with at least {min_ratings_150} Ratings")
-st.dataframe(top_5_150)
+st.subheader(f"Top 5 Movies with at least {min_ratings} Ratings")
+fig, ax = plt.subplots(figsize=(13, 8))
+ax.barh(top_5_movies.index[::-1], top_5_movies.values[::-1], color='skyblue')
+ax.set_xlabel('Average Rating')
+ax.set_ylabel('Movie Title')
+ax.set_title(f'Top 5 Best-Rated Movies (Min. {min_ratings} Ratings)')
+st.pyplot(fig)
