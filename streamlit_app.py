@@ -67,3 +67,26 @@ yearly_avg_ratings = df.groupby('year')['rating'].mean()
 fig3 = px.line(x=yearly_avg_ratings.index, y=yearly_avg_ratings.values, labels={'x': 'Movie Release Year', 'y': 'Mean Rating'}, title='Mean Rating Change Across Movie Release Years')
 
 st.plotly_chart(fig3)
+
+# Question 4: What are the 5 best-rated movies that have at least 50 ratings? At least 150 ratings?
+st.title("Best-rated movies")
+st.markdown("What are the 5 best-rated movies that have at least 50 ratings? At least 150 ratings? ")
+st.markdown("Here, we see the Top 5 best-rated movies. ")
+
+# Get movies with at least 50 ratings
+min_ratings_50 = 50
+movie_counts_50 = df['title'].value_counts()
+popular_movies_50 = movie_counts_50[movie_counts_50 >= min_ratings_50].index
+top_5_50 = df[df['title'].isin(popular_movies_50)].groupby('title')['rating'].mean().sort_values(ascending=False).head(5)
+
+st.subheader(f"Top 5 Movies with at least {min_ratings_50} Ratings")
+st.dataframe(top_5_50)
+
+# Get movies with at least 150 ratings
+min_ratings_150 = 150
+movie_counts_150 = df['title'].value_counts()
+popular_movies_150 = movie_counts_150[movie_counts_150 >= min_ratings_150].index
+top_5_150 = df[df['title'].isin(popular_movies_150)].groupby('title')['rating'].mean().sort_values(ascending=False).head(5)
+
+st.subheader(f"Top 5 Movies with at least {min_ratings_150} Ratings")
+st.dataframe(top_5_150)
