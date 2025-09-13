@@ -28,7 +28,7 @@ genre_counts = df['genres'].value_counts().sort_values(ascending=False)
 fig, ax = plt.subplots(figsize=(13, 8))
 ax.bar(genre_counts.index, genre_counts.values, color='skyblue')
 ax.set_title('Number of Ratings per Genre', fontsize=16, fontweight='bold')
-ax.set_xlabel('Genres', fontsize=12)
+ax.set_xlabel('Genre', fontsize=12)
 ax.set_ylabel('Number of Ratings', fontsize=12)
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
@@ -45,7 +45,7 @@ genre_avg_ratings = df.groupby('genres')['rating'].mean().sort_values(ascending=
 
 # Seaborn bar chart
 fig2, ax2 = plt.subplots(figsize=(13, 8))
-sns.barplot(x=genre_avg_ratings.index, y=genre_avg_ratings.values, palette='viridis', ax=ax2)
+sns.barplot(x=genre_avg_ratings.index, y=genre_avg_ratings.values, color='skyblue', ax=ax2)
 ax2.set_title('Average Rating per Genre', fontsize=16, fontweight='bold')
 ax2.set_xlabel('Genre', fontsize=12)
 ax2.set_ylabel('Average Rating', fontsize=12)
