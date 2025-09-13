@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 
 st.set_page_config(
     page_title="Movie Ratings Analysis Dashboards",
@@ -53,3 +54,16 @@ plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 
 st.pyplot(fig2)
+
+# Question 3: How does mean rating change across movie release years?
+st.title("Average Rating Across Movie Release Years")
+st.markdown("How does mean rating change across movie release years? ")
+st.markdown("Here, we see the change in average rating across the years. ")
+
+# Mean rating for each movie release year
+yearly_avg_ratings = df.groupby('year')['rating'].mean()
+
+# Plotly line chart
+fig3 = px.line(x=yearly_avg_ratings.index, y=yearly_avg_ratings.values, labels={'x': 'Movie Release Year', 'y': 'Mean Rating'}, title='Mean Rating Change Across Movie Release Years')
+
+st.plotly_chart(fig3)
