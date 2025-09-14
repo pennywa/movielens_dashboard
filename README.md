@@ -24,18 +24,18 @@ Before running the app, make sure you have Python installed. The project's depen
 
 To install the necessary libraries, open your terminal or command prompt, navigate to your project directory, and run the following command:
 
-pip install -r requirements.txt
+   pip install -r requirements.txt
 
 This will install Streamlit, Pandas, Matplotlib, Seaborn, and Plotly.
 
 ### How to run it on your own machine
 
-    Ensure that the movie_ratings.csv file is in the same directory as the streamlit_app.py and requirements.txt files.
+Ensure that the movie_ratings.csv file is in the same directory as the streamlit_app.py and requirements.txt files.
 
-    In your terminal, navigate to the project directory.
+In your terminal, navigate to the project directory.
 
-    Run the app using the Streamlit command:
+Run the app using the Streamlit command:
 
-streamlit run streamlit_app.py
+   streamlit run streamlit_app.py
 
 Your web browser will automatically open to the interactive dashboard.
