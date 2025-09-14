@@ -1,6 +1,6 @@
 # Movie Ratings Dashboards
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://movielens-dashboard.streamlit.app/)
 
 This is an interactive Streamlit application that analyzes the MovieLens 200k dataset. The dashboard provides insights into popular genres, viewer satisfaction, and the top-rated movies, all through dynamic visualizations and filters.
 
