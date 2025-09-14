@@ -22,7 +22,6 @@ st.title("Genre Breakdown for Rated Movies")
 st.markdown("What's the breakdown of genres for the movies that were rated? ")
 st.markdown("Here, we see the distribution of movie ratings across different genres. ")
 
-
 # year as integer not floating point
 years = df['year'].dropna().astype('Int64').unique().tolist()
 years = ['All'] + sorted(years)
