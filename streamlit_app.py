@@ -22,9 +22,6 @@ st.title("Genre Breakdown for Rated Movies")
 st.markdown("What's the breakdown of genres for the movies that were rated? ")
 st.markdown("Here, we see the distribution of movie ratings across different genres. ")
 
-# Selectbox for the release year filter
-years = ['All'] + sorted(df['year'].unique().tolist())
-selected_year = st.selectbox('Select a Movie Release Year', years)
 
 # year as integer not floating point
 years = df['year'].dropna().astype('Int64').unique().tolist()
@@ -37,7 +34,6 @@ if selected_year != 'All':
     filtered_df_q1 = df[df['year'] == selected_year]
 else:
     filtered_df_q1 = df.copy()
-
 
 genre_counts = filtered_df_q1['genres'].value_counts().sort_values(ascending=False)
 
